@@ -37,37 +37,37 @@ We are building a deep learning model that can look at an image and determine wh
 ### Phase 3 — Advanced Models & Comparative Analysis
 - Train and experiment with multiple model architectures
 - Compare performance across models on both datasets
-- Explore techniques like knowledge distillation for efficient inference
-- Select the best-performing model for the final demo
+- Apply **knowledge distillation**: train a smaller student model from a stronger teacher to improve speed and memory use at inference time
+- Select the best models for the final demo
 
 ---
 
 ## Demo
 A lightweight **Gradio web interface** that lets users:
-1. Upload an image
-2. Get a **Real / Fake prediction** with a confidence score
+1. **Choose a model** from a list of trained checkpoints (baseline, advanced, distilled student, etc.)
+2. Upload an image
+3. Get a **Real / Fake prediction** with a confidence score for the selected model
+
+The best-performing model is labeled as such in the UI.
 
 ---
 
-## Project Notebooks
+## Project Structure
 
-The EDA, model training work is done in Google Colab | The final models are loaded as checkpoint and loaded into the Gradio UI  organized as follows:
+Exploratory analysis and training is run in **Google Colab** (`.ipynb` notebooks). We save the weights of each final model as **checkpoints** (e.g. `model.pt`). The **Gradio** app loads those checkpoints and serves the web UI (no training happens inside `app.py`).
 
 ```
- EDA/
-   ├── 01_EDA.ipynb
- Baseline/
-   ├── baseline_model.ipynb
- Final Approach/
-   ├── models.ipynb
-   └── model_1.py
-   └── model_2.py
-        .....
-   └── model.pt
-
- Gradio
-   ├── app.py
-
+EDA/
+├── 01_EDA.ipynb
+Baseline/
+├── baseline_model.ipynb
+Final Approach/
+├── models.ipynb
+├── model_1.py
+├── model_2.py
+└── model.pt
+Gradio/
+└── app.py
 ```
 
 ---
