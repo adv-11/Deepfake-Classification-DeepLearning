@@ -38,6 +38,7 @@ We are building a deep learning model that can look at an image and determine wh
 - Train and experiment with multiple model architectures
 - Compare performance across models on both datasets
 - Apply **knowledge distillation**: train a smaller student model from a stronger teacher to improve speed and memory use at inference time
+- Evaluate model generalization between the two datasets
 - Select the best models for the final demo
 
 ---
@@ -49,6 +50,16 @@ A lightweight **Gradio web interface** that lets users:
 3. Get a **Real / Fake prediction** with a confidence score for the selected model
 
 The best-performing model is labeled as such in the UI.
+
+---
+
+## Current Progress
+
+- ✅ EDA is completed: `EDA/01_EDA.ipynb` (local) and `EDA/02_EDA_Colab.ipynb` (Colab)
+  - ✅ CIFAKE + DeepDetect analysis (class counts/balance, resolution checks, RGB stats, and sample visualizations), with summary/findings sections
+- ✅ Baseline training/evaluation pipeline is implemented and executed in `Baseline Approach/Deepfake_Detector_Baseline.ipynb` (best-checkpoint saving, test metrics, confusion matrix, ROC curve, and exported `results.json`/plots/checkpoint)
+  - ✅ At least one baseline run completed (`Best val AUC = 0.9987`)
+- 🚧 [Next Steps] Advanced models and Gradio app
 
 ---
 
