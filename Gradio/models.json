@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Baseline ResNet18 (CIFAKE)",
+    "architecture": "resnet18",
+    "checkpoint": "baseline_resnet18_cifake.pt",
+    "img_size": 224,
+    "best": true
+  },
+  {
+    "name": "EfficientNet Student",
+    "architecture": "efficientnet",
+    "checkpoint": "student_efficientnet_b0.pth",
+    "img_size": 224,
+    "best": false
+  }
+]
