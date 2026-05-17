@@ -1,0 +1,37 @@
+{
+  "run_name": "student_rgb_cifake_test_20260516_195129",
+  "eval_config": {
+    "model": "student_rgb",
+    "dataset": "cifake",
+    "checkpoint": "models/student_rgb_distilled.pt",
+    "split": "test",
+    "img_size": 224,
+    "batch_size": 64,
+    "max_samples": null,
+    "data_root": null,
+    "train_source": "DeepDetect-2025 (teacher training notebook)"
+  },
+  "checkpoint": "/content/models/student_rgb_distilled.pt",
+  "data_root": "/kaggle/input/cifake-real-and-ai-generated-synthetic-images",
+  "metrics": {
+    "accuracy": 0.5205,
+    "auc": 0.573036195,
+    "f1": 0.13259768451519538,
+    "n_samples": 20000
+  },
+  "confusion_matrix": [
+    [
+      9677,
+      323
+    ],
+    [
+      9267,
+      733
+    ]
+  ],
+  "checkpoint_val_metrics": {
+    "acc": 0.8917615723732549,
+    "auc": 0.9888857711697232,
+    "f1": 0.8973118982268113
+  }
+}

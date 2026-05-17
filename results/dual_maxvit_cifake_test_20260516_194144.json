@@ -1,0 +1,37 @@
+{
+  "run_name": "dual_maxvit_cifake_test_20260516_194144",
+  "eval_config": {
+    "model": "dual_maxvit",
+    "dataset": "cifake",
+    "checkpoint": "models/final_dual_maxvit.pt",
+    "split": "test",
+    "img_size": 224,
+    "batch_size": 64,
+    "max_samples": null,
+    "data_root": null,
+    "train_source": "DeepDetect-2025 (teacher training notebook)"
+  },
+  "checkpoint": "/content/models/final_dual_maxvit.pt",
+  "data_root": "/kaggle/input/cifake-real-and-ai-generated-synthetic-images",
+  "metrics": {
+    "accuracy": 0.5001,
+    "auc": 0.50970216,
+    "f1": 0.0003999200159968006,
+    "n_samples": 20000
+  },
+  "confusion_matrix": [
+    [
+      10000,
+      0
+    ],
+    [
+      9998,
+      2
+    ]
+  ],
+  "checkpoint_val_metrics": {
+    "acc": 0.9259276267450404,
+    "auc": 0.9828173787983058,
+    "f1": 0.9280199919675131
+  }
+}
