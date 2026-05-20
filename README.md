@@ -12,7 +12,7 @@ Datasets ( Kaggle )
 - DeepDetect-2025 — higher-resolution real vs AI-generated images (256×)
 
 Directory structure (key files)
-- Gradio app and models: [Gradio_App/deepfake_detection/](Gradio_App/deepfake_detection/README.md)
+- Gradio app and models: [Gradio_App/deepfake_detection/](Gradio_App/README.md)
 - EDA notebooks: [EDA/01_EDA.ipynb](EDA/01_EDA.ipynb)
 - Baseline training: [Baseline Approach/Deepfake_Detector_Baseline.ipynb](Baseline%20Approach/Deepfake_Detector_Baseline.ipynb)
 - Final experiments: [Final Approach/](Final%20Approach/)
