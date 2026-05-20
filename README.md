@@ -1,88 +1,75 @@
 # Deepfake Detector
-**CMPE 258-01 | Deep Learning Final Project**
 
-**Team:** Advait Shinde · Nickzad Bayati · Toney Zhen
 
----
+Team: Advait Shinde · Nickzad Bayati · Toney Zhen
 
-## What This Project Does
+Overview
+- Deep learning models to classify images as REAL vs FAKE (AI-generated).
+- Includes notebooks for EDA and training, trained checkpoints, a Gradio demo app, and evaluation results.
 
-We are building a deep learning model that can look at an image and determine whether it is **real or AI-generated**. The final product is a web interface where a user uploads an image and gets a prediction with a confidence score.
+Datasets
+- CIFAKE — synthetic + CIFAR-10 real images (32×32)
+- DeepDetect-2025 — higher-resolution real vs AI-generated images (256×)
 
----
+Directory structure (key files)
+- Gradio app and models: [Gradio_App/deepfake_detection/](Gradio_App/deepfake_detection/README.md)
+- EDA notebooks: [EDA/01_EDA.ipynb](EDA/01_EDA.ipynb)
+- Baseline training: [Baseline Approach/Deepfake_Detector_Baseline.ipynb](Baseline%20Approach/Deepfake_Detector_Baseline.ipynb)
+- Final experiments: [Final Approach/](Final%20Approach/)
+- Saved results: [results/](results/)
 
-## Datasets
+Quick start — run the Gradio demo (Windows)
+1. Open a terminal and create / activate a virtual env (recommended):
 
-| Dataset | Description |
-|---|---|
-| **CIFAKE** | 120,000 images (32×32) — real images from CIFAR-10 + AI-generated images from Stable Diffusion |
-| **DeepDetect-2025** | Higher-resolution images (256×256+) — real vs. AI-generated using recent diffusion models |
-
----
-
-## Plan of Action
-
-### Phase 1 — Exploratory Data Analysis (EDA)
-- Understand the distribution, quality, and characteristics of both datasets
-- Visualize sample images from each class (real vs. fake)
-- Check for class imbalance, image resolution differences, and artifacts
-- Document key findings to guide model design
-
-### Phase 2 — Baseline Model
-- Train a standard CNN architecture (e.g., **ResNet** or **EfficientNet**) as a baseline
-- Evaluate using accuracy and AUROC
-- Measure inference latency on CPU/GPU
-- Establishes a performance benchmark for comparison
-
-### Phase 3 — Advanced Models & Comparative Analysis
-- Train and experiment with multiple model architectures
-- Compare performance across models on both datasets
-- Apply **knowledge distillation**: train a smaller student model from a stronger teacher to improve speed and memory use at inference time
-- Evaluate model generalization between the two datasets
-- Select the best models for the final demo
-
----
-
-## Demo
-A lightweight **Gradio web interface** that lets users:
-1. **Choose a model** from a list of trained checkpoints (baseline, advanced, distilled student, etc.)
-2. Upload an image
-3. Get a **Real / Fake prediction** with a confidence score for the selected model
-
-The best-performing model is labeled as such in the UI.
-
----
-
-## Current Progress
-
-- ✅ EDA is completed: `EDA/01_EDA.ipynb` (local) and `EDA/02_EDA_Colab.ipynb` (Colab)
-  - ✅ CIFAKE + DeepDetect analysis (class counts/balance, resolution checks, RGB stats, and sample visualizations), with summary/findings sections
-- ✅ Baseline training/evaluation pipeline is implemented and executed in `Baseline Approach/Deepfake_Detector_Baseline.ipynb` (best-checkpoint saving, test metrics, confusion matrix, ROC curve, and exported `results.json`/plots/checkpoint)
-  - ✅ At least one baseline run completed (`Best val AUC = 0.9987`)
-- 🚧 [Next Steps] Advanced models and Gradio app
-
----
-
-## Project Structure
-
-Exploratory analysis and training is run in **Google Colab** (`.ipynb` notebooks). We save the weights of each final model as **checkpoints** (e.g. `model.pt`). The **Gradio** app loads those checkpoints and serves the web UI (no training happens inside `app.py`).
-
-```
-EDA/
-├── 01_EDA.ipynb
-Baseline/
-├── baseline_model.ipynb
-Final Approach/
-├── models.ipynb
-├── model_1.py
-├── model_2.py
-└── model.pt
-Gradio/
-└── app.py
+```powershell
+cd Gradio_App\deepfake_detection
+python -m venv .venv
+.venv\Scripts\Activate.ps1   # PowerShell
+# or .venv\Scripts\activate   # cmd.exe
 ```
 
----
+2. Install dependencies:
 
-## References
-1. J. J. Bird, "CIFAKE: Real and AI-Generated Synthetic Images," GitHub, 2023. https://github.com/jordan-bird/CIFAKE-Real-and-AI-Generated-Synthetic-Images
-2. A. Datta, "DeepDetect-2025," Kaggle, 2025. https://www.kaggle.com/datasets/ayushmandatta1/deepdetect-2025
+```powershell
+pip install -r requirements.txt
+```
+
+3. Launch the demo:
+
+```powershell
+python app.py
+```
+
+Notes:
+- The UI uses `Gradio` and runs locally by default. Open the provided local URL in your browser.
+- The `requirements.txt` pins CPU-only PyTorch builds to match the included checkpoints.
+
+Models included in the demo
+- ResNet-18 — [resnet18.pt](Gradio_App/deepfake_detection/resnet18.pt)
+- Dual MaxViT — [final_dual_maxvit.pt](Gradio_App/deepfake_detection/final_dual_maxvit.pt)
+- MaxViT → MobileNetV3 (distilled student) — [final_dual_maxvit_distilled_MobileNetv3_student.pt](Gradio_App/deepfake_detection/final_dual_maxvit_distilled_MobileNetv3_student.pt)
+
+How the demo works (summary)
+- `Gradio_App/deepfake_detection/app.py` exposes two tabs:
+  - Single Image: upload an image and pick a model to get REAL/FAKE + confidence.
+  - Batch Benchmark: upload a CSV with `image_path` and `true_label` to run per-model inference and get summary metrics (accuracy, approx AUC, latency) and plots.
+- Model loading and preprocessing are implemented in `app.py`. MaxViT variants require `timm` at runtime.
+
+Notebooks and training
+- EDA: [EDA/01_EDA.ipynb](EDA/01_EDA.ipynb) and [EDA/02_EDA_Colab.ipynb](EDA/02_EDA_Colab.ipynb)
+- Baseline training & evaluation: [Baseline Approach/Deepfake_Detector_Baseline.ipynb](Baseline%20Approach/Deepfake_Detector_Baseline.ipynb)
+- Final approach notebooks: files in [Final Approach/](Final%20Approach/)
+
+Results
+- JSON outputs from evaluation runs are in the `results/` folder (e.g., dual_maxvit_cifake_test_20260516_194144.json).
+
+Developer notes
+- To add a new model to the demo, place the checkpoint file in `Gradio_App/deepfake_detection/` and add an entry to `MODEL_FILES` in `app.py`.
+- The demo expects model checkpoints to follow the conventions used by the training scripts (see notebook/train files in `Final Approach/` if available).
+
+Next steps (suggested)
+- Commit the updated README and any remaining checkpoints.
+- (Optional) I can open a PR or run the demo locally and verify endpoints.
+
+Contact
+- For questions, reach out to the project owners (Advait, Nickzad, Toney).
