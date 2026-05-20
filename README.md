@@ -7,7 +7,7 @@ Overview
 - Deep learning models to classify images as REAL vs FAKE (AI-generated).
 - Includes notebooks for EDA and training, trained checkpoints, a Gradio demo app, and evaluation results.
 
-Datasets
+Datasets ( Kaggle )
 - CIFAKE — synthetic + CIFAR-10 real images (32×32)
 - DeepDetect-2025 — higher-resolution real vs AI-generated images (256×)
 
@@ -17,6 +17,11 @@ Directory structure (key files)
 - Baseline training: [Baseline Approach/Deepfake_Detector_Baseline.ipynb](Baseline%20Approach/Deepfake_Detector_Baseline.ipynb)
 - Final experiments: [Final Approach/](Final%20Approach/)
 - Saved results: [results/](results/)
+
+Model Files uploaded to: 
+1. https://www.kaggle.com/models/srgmanatee/deepfakedetector/ ( Distilled Model: Maxvit -> Mobile Net)
+2. https://huggingface.co/toney02/cmpe258-deepfake-detector-models/tree/main ( Baseline: Resnet + Final: Dual Maxvit)
+
 
 Quick start — run the Gradio demo (Windows)
 1. Open a terminal and create / activate a virtual env (recommended):
