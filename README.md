@@ -68,13 +68,6 @@ Notebooks and training
 Results
 - JSON outputs from evaluation runs are in the `results/` folder (e.g., dual_maxvit_cifake_test_20260516_194144.json).
 
-Developer notes
+Deployment Notes
 - To add a new model to the demo, place the checkpoint file in `Gradio_App/deepfake_detection/` and add an entry to `MODEL_FILES` in `app.py`.
 - The demo expects model checkpoints to follow the conventions used by the training scripts (see notebook/train files in `Final Approach/` if available).
-
-Next steps (suggested)
-- Commit the updated README and any remaining checkpoints.
-- (Optional) I can open a PR or run the demo locally and verify endpoints.
-
-Contact
-- For questions, reach out to the project owners (Advait, Nickzad, Toney).
