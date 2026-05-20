@@ -8,8 +8,8 @@ Overview
 - Includes notebooks for EDA and training, trained checkpoints, a Gradio demo app, and evaluation results.
 
 Datasets ( Kaggle )
-- CIFAKE — synthetic + CIFAR-10 real images (32×32)
-- DeepDetect-2025 — higher-resolution real vs AI-generated images (256×)
+- CIFAKE ([link](https://www.kaggle.com/datasets/birdy654/cifake-real-and-ai-generated-synthetic-images)) — synthetic + CIFAR-10 real images (32×32)
+- DeepDetect-2025 ([link](https://www.kaggle.com/datasets/ayushmandatta1/deepdetect-2025)) — higher-resolution real vs AI-generated images (256×)
 
 Directory structure (key files)
 - Gradio app and models: [Gradio_App/deepfake_detection/](Gradio_App/)
